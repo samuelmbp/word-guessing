@@ -17,4 +17,8 @@ public class Game {
 		}
 		return builder.toString();
 	}
+
+	public Integer getRemainingAttempts() {
+		return 10;
+	}
 }

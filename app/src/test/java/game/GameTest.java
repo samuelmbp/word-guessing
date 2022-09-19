@@ -9,4 +9,16 @@ public class GameTest {
 		Game game = new Game("MAKERS");
 		assertEquals(game.getWordToGuess(), "M_____");
 	}
+
+	/**
+	 * Create a new game obj
+	 * Create a variable called attempts as integer
+	 * Use Integer.valueOf(attempts), obj.methodName()
+	 */
+	@Test
+	public void testGetRemainingAttempts() {
+		Game game = new Game("MAKERS");
+		Integer attemptsCounter = 10;
+		assertEquals("should return the numbers of attempts", Integer.valueOf(attemptsCounter), game.getRemainingAttempts());
+	}
 }
