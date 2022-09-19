@@ -1,7 +1,7 @@
 package game;
 
 public class Game {
-	String word;
+	private String word;
 
 	public Game(String word) {
 		this.word = word;
@@ -11,10 +11,10 @@ public class Game {
 	}
 
 	public String getWordToGuess() {
-		StringBuilder sb = new StringBuilder(word);
+		StringBuilder builder = new StringBuilder(word);
 		for (int i = 1; i < word.length(); i++) {
-			sb.replace(i, word.length(), "_");
+			builder.replace(i, word.length(), "_");
 		}
-		return sb.toString();
+		return builder.toString();
 	}
 }
