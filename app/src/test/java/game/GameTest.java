@@ -8,7 +8,7 @@ public class GameTest {
 	public void testGetsWordToGuess() {
 		Game game = new Game();
 		String word = "M_____";
-		assertEquals(game.getWordToGuess(), word);
+		assertEquals(game.getWordToGuess(word), word);
 	}
 
 	@Test
