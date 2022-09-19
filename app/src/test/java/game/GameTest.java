@@ -6,19 +6,16 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
 	@Test
 	public void testGetsWordToGuess() {
-		Game game = new Game("MAKERS");
-		assertEquals(game.getWordToGuess(), "M_____");
+		Game game = new Game();
+		String word = "M_____";
+		assertEquals(game.getWordToGuess(), word);
 	}
 
-	/**
-	 * Create a new game obj
-	 * Create a variable called attempts as integer
-	 * Use Integer.valueOf(attempts), obj.methodName()
-	 */
 	@Test
 	public void testGetRemainingAttempts() {
-		Game game = new Game("MAKERS");
+		Game game = new Game();
 		Integer remainingAttempts = 10;
-		assertEquals("should return the numbers of attempts", Integer.valueOf(remainingAttempts), game.getRemainingAttempts());
+		assertEquals("should return the number of attempts", Integer.valueOf(remainingAttempts),
+				game.getRemainingAttempts());
 	}
 }
