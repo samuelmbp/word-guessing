@@ -18,7 +18,7 @@ public class GameTest {
 	@Test
 	public void testGetRemainingAttempts() {
 		Game game = new Game("MAKERS");
-		Integer attemptsCounter = 10;
-		assertEquals("should return the numbers of attempts", Integer.valueOf(attemptsCounter), game.getRemainingAttempts());
+		Integer remainingAttempts = 10;
+		assertEquals("should return the numbers of attempts", Integer.valueOf(remainingAttempts), game.getRemainingAttempts());
 	}
 }
