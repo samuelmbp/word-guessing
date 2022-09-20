@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 	@Test
-	public void testGetsWordToGuess() {
+	public void testGetsWordToGuessWithRandomWord() {
 		Game game = new Game();
 		String word = "M_____";
 		assertEquals(game.getWordToGuess(word), word);

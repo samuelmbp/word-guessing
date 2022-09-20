@@ -5,7 +5,6 @@ import java.util.Random;
 public class Game {
 	public String word;
 	private Integer remainingAttempts = 10;
-
 	private static final String[] DICTIONARY = { "MAKERS", "CANDIES", "DEVELOPER", "LONDON" };
 
 	public Game() {
@@ -31,5 +30,4 @@ public class Game {
 		Random random = new Random();
 		return DICTIONARY[random.nextInt(DICTIONARY.length)];
 	}
-
 }
