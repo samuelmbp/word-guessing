@@ -38,4 +38,22 @@ public class GameTest {
 		 Integer.valueOf(remainingAttempts),
 		 game.getRemainingAttempts());
 	 }
+
+	@Test
+	public void testGuessLetterRightAndDisplayIt() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+
+		Game game = new Game(wordChoser);
+		assertEquals(game.guessLetter('O'), true);
+	}
+
+	@Test
+	public void testGuessLetterWrong() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+
+		Game game = new Game(wordChoser);
+		assertEquals(game.guessLetter('X'), false);
+	}
 }
