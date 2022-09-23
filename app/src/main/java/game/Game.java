@@ -5,17 +5,16 @@ public class Game {
 	}
 
 	public String word;
-	private Integer remainingAttempts = 10;
+	private int remainingAttempts = 10;
 
-	public Game() {
-		WordChoser wordChoser = new WordChoser();
-		word = wordChoser.getRandomWordFromDictionary();
+	public Game(WordChoser wordChoser) {
+		this.word = wordChoser.getRandomWordFromDictionary();
 	}
 
-	public String getWordToGuess(String str) {
-		StringBuilder builder = new StringBuilder(str);
-		for (int i = 1; i < str.length(); i++) {
-			builder.replace(i, str.length(), "_");
+	public String getWordToGuess() {
+		StringBuilder builder = new StringBuilder(word);
+		for (int i = 1; i < word.length(); i++) {
+			builder.replace(i, word.length(), "_");
 		}
 		return builder.toString();
 	}

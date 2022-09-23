@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class WordChoserTest {
 
 	@Test
-	public void shouldContainADictionary() {
+	public void shouldGetRandomWordFromDictionary() {
 		WordChoser wordChoser = new WordChoser();
 		String[] MOCK_DICTIONARY = { "MAKERS", "CANDIES", "DEVELOPER", "LONDON" };
 
