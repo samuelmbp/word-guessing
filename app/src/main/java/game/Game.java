@@ -7,7 +7,7 @@ public class Game {
 	public static void main(String[] args) {
 	}
 	private String word;
-	private int remainingAttempts = 10;
+	public int remainingAttempts = 10;
 
 	public Game(WordChoser wordChoser) {
 		this.word = wordChoser.getRandomWordFromDictionary();
