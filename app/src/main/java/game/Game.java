@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class Game {
 	private ArrayList<Character> guessedLetters = new ArrayList<>();
-	public static void main(String[] args) {
-	}
 	private String word;
 	public int remainingAttempts = 10;
+	private Boolean isGameLostAttr;
 
 	public Game(WordChoser wordChoser) {
 		this.word = wordChoser.getRandomWordFromDictionary();
@@ -45,4 +44,10 @@ public class Game {
 			return false;
 		}
 	};
+
+	public Boolean isGameLost() {
+		if (this.remainingAttempts == 0)
+			this.isGameLostAttr = true;
+		return this.isGameLostAttr;
+	}
 }

@@ -1,6 +1,7 @@
 package game;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 
@@ -33,8 +34,6 @@ public class GameTest {
 		assertEquals(game.guessLetter('Y'), false);
 		assertEquals(game.getWordToGuess(), "L_____");
 	}
-
-
 
 	@Test
 	public void testGetsWordToGuessWithRandomWord() {
@@ -74,5 +73,24 @@ public class GameTest {
 
 		Game game = new Game(wordChoser);
 		assertEquals(game.guessLetter('X'), false);
+	}
+
+	@Test
+	public void shouldLoseGameIfNotAttemptsLeft() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("SEA");
+
+		Game game = new Game(wordChoser);
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		game.guessLetter('Y');
+		assertTrue("should lose the game when no attempts left", game.isGameLost());
 	}
 }
