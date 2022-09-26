@@ -6,7 +6,7 @@ public class Game {
 	private ArrayList<Character> guessedLetters = new ArrayList<>();
 	private String word;
 	public int remainingAttempts = 10;
-	private Boolean isGameLostAttr;
+//	private Boolean isGameLostAttr;
 
 	public Game(WordChoser wordChoser) {
 		this.word = wordChoser.getRandomWordFromDictionary();
@@ -46,8 +46,11 @@ public class Game {
 	};
 
 	public Boolean isGameLost() {
-		if (this.remainingAttempts == 0)
-			this.isGameLostAttr = true;
-		return this.isGameLostAttr;
+		if (this.remainingAttempts == 0) {
+			System.out.println("You've lost! Try again.");
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

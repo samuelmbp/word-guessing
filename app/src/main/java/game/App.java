@@ -26,6 +26,6 @@ public class App {
             } else {
                 System.out.println("Wrong!");
             }
-        } while(game.remainingAttempts >= 1);
+        } while(!game.isGameLost());
     }
 }
