@@ -105,4 +105,16 @@ public class GameTest {
 		game.guessLetter('A');
 		assertTrue("should win the game when word is guessed", game.isGameWon());
 	}
+
+	@Test
+	public void shouldWinTheGameWhenSpecialCharactersAreGuessed() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("ABBA");
+
+		Game game = new Game(wordChoser);
+		game.guessLetter('A');
+		game.guessLetter('B');
+		game.guessLetter('A');
+		assertEquals(game.isGameWon(), true);
+	}
 }
