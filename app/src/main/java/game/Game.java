@@ -55,8 +55,8 @@ public class Game {
 	}
 
 	public Boolean isGameWon() {
-		for (int i = 1; i > word.length(); i++) {
-			Character letter = word.charAt(i);
+		for (int i = 1; i < this.word.length(); i++) {
+			Character letter = this.word.charAt(i);
 			if (!this.guessedLetters.contains(letter))
 				return false;
 		}

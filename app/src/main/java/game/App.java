@@ -18,11 +18,18 @@ public class App {
         do {
             System.out.println(game.getWordToGuess());
             System.out.println("Enter one letter to guess (" + game.getRemainingAttempts() + " attempts remaining): ");
+
             Scanner scanner = new Scanner(System.in);
             Character letter = scanner.nextLine().charAt(0);
 
             if (game.guessLetter(letter)) {
                 System.out.println("Right!");
+
+                if (game.isGameWon()) {
+                    System.out.println("The word is: " + game.getWordToGuess());
+                    System.out.println("Congratulations! You won the game.");
+                    break;
+                }
             } else {
                 System.out.println("Wrong!");
             }
