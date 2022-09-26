@@ -93,4 +93,16 @@ public class GameTest {
 		game.guessLetter('Y');
 		assertTrue("should lose the game when no attempts left", game.isGameLost());
 	}
+
+	@Test
+	public void shouldWinTheGameWhenWordIsGuessedCorrectly() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("SEA");
+
+		Game game = new Game(wordChoser);
+		game.guessLetter('S');
+		game.guessLetter('E');
+		game.guessLetter('A');
+		assertTrue("should win the game when word is guessed", game.isGameWon());
+	}
 }

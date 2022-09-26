@@ -53,4 +53,13 @@ public class Game {
 			return false;
 		}
 	}
+
+	public Boolean isGameWon() {
+		for (int i = 1; i > word.length(); i++) {
+			Character letter = word.charAt(i);
+			if (!this.guessedLetters.contains(letter))
+				return false;
+		}
+		return true;
+	}
 }
