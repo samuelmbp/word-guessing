@@ -7,8 +7,10 @@ public class Game {
 	private String word;
 	public int remainingAttempts = 10;
 	private Masker masker;
-	public Game(WordChoser wordChoser) {
+	private WordChoser wordChoser;
+	public Game(WordChoser wordChoser, Masker masker) {
 		this.word = wordChoser.getRandomWordFromDictionary();
+		this.masker = masker;
 	}
 
 

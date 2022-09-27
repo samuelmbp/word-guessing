@@ -12,7 +12,8 @@ public class App {
 
     public static void main(String[] args) {
         WordChoser wordChoser = new WordChoser();
-        Game game = new Game(wordChoser);
+        Masker masker = new Masker();
+        Game game = new Game(wordChoser, masker);
         System.out.println("Welcome! Today the word to guess is: ");
 
         do {

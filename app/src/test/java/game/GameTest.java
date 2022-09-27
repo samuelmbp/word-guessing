@@ -15,26 +15,34 @@ public class GameTest {
 		WordChoser mockedChoser = mock(WordChoser.class);
 		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("MAKERS");
 
-		Game game = new Game(mockedChoser);
-		assertEquals(game.guessLetter('K'), true);
-		assertEquals(game.getWordToGuess(), "M_K___");
-	}
-	@Test public void testGuessLetterWrongWhenNotInWord() {
-		WordChoser mockedChoser = mock(WordChoser.class);
-		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("LONDON");
+		Masker mockedMasker = mock(Masker.class);
 
-		Game game = new Game(mockedChoser);
-		assertEquals(game.guessLetter('Y'), false);
-		assertEquals(game.getWordToGuess(), "L_____");
+		Game game = new Game(mockedChoser, mockedMasker);
+		assertEquals(game.guessLetter('K'), true);
+	}
+
+	@Test
+	public void testGuessLetterWrong() {
+		WordChoser wordChoser = mock(WordChoser.class);
+		when(wordChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
+
+		Masker mockedMasker = mock(Masker.class);
+
+		Game game = new Game(wordChoser, mockedMasker);
+		assertEquals(game.guessLetter('X'), false);
 	}
 
 	@Test
 	public void testGetsWordToGuessWithRandomWord() {
 		WordChoser mockedChoser = mock(WordChoser.class);
-		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("LONDON");
+		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("MAKERS");
 
-		Game game = new Game(mockedChoser);
-		assertEquals(game.getWordToGuess(), "L_____");
+		Masker mockedMasker = mock(Masker.class);
+		ArrayList<Character> guessedLetters = new ArrayList<>();
+		when(mockedMasker.getMaskedWord("MAKERS", guessedLetters)).thenReturn("M_____");
+
+		Game game = new Game(mockedChoser, mockedMasker);
+		assertEquals(game.getWordToGuess(), "M_____");
 	}
 
 	 @Test
@@ -42,7 +50,11 @@ public class GameTest {
 		 WordChoser mockedChoser = mock(WordChoser.class);
 		 when(mockedChoser.getRandomWordFromDictionary()).thenReturn("LONDON");
 
-		 Game game = new Game(mockedChoser);
+		 Masker mockedMasker = mock(Masker.class);
+		 ArrayList<Character> guessedLetters = new ArrayList<>();
+		 when(mockedMasker.getMaskedWord("LONDON", guessedLetters)).thenReturn("LONDON");
+
+		 Game game = new Game(mockedChoser, mockedMasker);
 		 int remainingAttempts = 10;
 		 assertEquals("should return the number of attempts",
 		 Integer.valueOf(remainingAttempts),
@@ -54,25 +66,23 @@ public class GameTest {
 		WordChoser wordChoser = mock(WordChoser.class);
 		when(wordChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
 
-		Game game = new Game(wordChoser);
-		assertEquals(game.guessLetter('O'), true);
+		Masker mockedMasker = mock(Masker.class);
+		ArrayList<Character> guessedLetters = new ArrayList<>();
+		when(mockedMasker.getMaskedWord("DEVELOPER", guessedLetters)).thenReturn("DE_E___E_");
+
+		Game game = new Game(wordChoser, mockedMasker);
+		assertEquals(game.getWordToGuess(), "DE_E___E_");
 	}
-
-	@Test
-	public void testGuessLetterWrong() {
-		WordChoser wordChoser = mock(WordChoser.class);
-		when(wordChoser.getRandomWordFromDictionary()).thenReturn("DEVELOPER");
-
-		Game game = new Game(wordChoser);
-		assertEquals(game.guessLetter('X'), false);
-	}
-
 	@Test
 	public void shouldLoseGameIfNotAttemptsLeft() {
 		WordChoser wordChoser = mock(WordChoser.class);
 		when(wordChoser.getRandomWordFromDictionary()).thenReturn("SEA");
 
-		Game game = new Game(wordChoser);
+		Masker mockedMasker = mock(Masker.class);
+		ArrayList<Character> guessedLetters = new ArrayList<Character>();
+		when(mockedMasker.getMaskedWord("SEA", guessedLetters)).thenReturn("S__");
+
+		Game game = new Game(wordChoser, mockedMasker);
 		game.guessLetter('Y');
 		game.guessLetter('Y');
 		game.guessLetter('Y');
@@ -90,8 +100,10 @@ public class GameTest {
 	public void shouldWinTheGameWhenWordIsGuessedCorrectly() {
 		WordChoser wordChoser = mock(WordChoser.class);
 		when(wordChoser.getRandomWordFromDictionary()).thenReturn("SEA");
+		Masker mockedMasker = mock(Masker.class);
 
-		Game game = new Game(wordChoser);
+
+		Game game = new Game(wordChoser, mockedMasker);
 		game.guessLetter('S');
 		game.guessLetter('E');
 		game.guessLetter('A');
@@ -102,8 +114,10 @@ public class GameTest {
 	public void shouldWinTheGameWhenSpecialCharactersAreGuessed() {
 		WordChoser wordChoser = mock(WordChoser.class);
 		when(wordChoser.getRandomWordFromDictionary()).thenReturn("ABBA");
+		Masker mockedMasker = mock(Masker.class);
 
-		Game game = new Game(wordChoser);
+
+		Game game = new Game(wordChoser, mockedMasker);
 		game.guessLetter('A');
 		game.guessLetter('B');
 		game.guessLetter('A');

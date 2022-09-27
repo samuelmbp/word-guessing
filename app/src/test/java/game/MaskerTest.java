@@ -10,6 +10,14 @@ import static org.mockito.Mockito.*;
 
 public class MaskerTest {
     @Test
+    public void testGetInitialWorkToGuess() {
+        Masker masker = new Masker();
+        ArrayList<Character> guessedLetters = new ArrayList<>();
+
+        assertEquals(masker.getMaskedWord("LONDON", guessedLetters), "L_____");
+    }
+
+    @Test
     public void testGetsMaskedWord() {
         Masker masker = new Masker();
         ArrayList<Character> guessedLetters = new ArrayList<>();
