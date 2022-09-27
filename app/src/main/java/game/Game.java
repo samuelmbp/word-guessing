@@ -6,33 +6,15 @@ public class Game {
 	private ArrayList<Character> guessedLetters = new ArrayList<>();
 	private String word;
 	public int remainingAttempts = 10;
-//	private Boolean isGameLostAttr;
-
+	private Masker masker;
 	public Game(WordChoser wordChoser) {
 		this.word = wordChoser.getRandomWordFromDictionary();
 	}
 
-	public String getWordToGuess() {
-		StringBuilder builder = new StringBuilder();
 
-		for (int i = 0; i < this.word.length(); i++) {
-			Character currentLetter = word.charAt(i);
-			if (i == 0) {
-				builder.append(currentLetter);
-			} else {
-				if (guessedLetters.indexOf(currentLetter) != -1) {
-					builder.append(currentLetter);
-				} else {
-					builder.append("_");
-				}
-			}
-		}
-
-		return builder.toString();
-	}
 
 	public Integer getRemainingAttempts() {
-		return remainingAttempts;
+		return this.remainingAttempts;
 	}
 
 	public Boolean guessLetter(Character letter) {
@@ -44,6 +26,10 @@ public class Game {
 			return false;
 		}
 	};
+
+	public String getWordToGuess() {
+		return this.masker.getMaskedWord(this.word, guessedLetters);
+	}
 
 	public Boolean isGameLost() {
 		if (this.remainingAttempts == 0) {

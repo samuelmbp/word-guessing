@@ -5,19 +5,12 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 
+import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class GameTest {
-	 @Test
-	 public void testGetsWordToGuess() {
-		 WordChoser mockedChoser = mock(WordChoser.class);
-		 when(mockedChoser.getRandomWordFromDictionary()).thenReturn("LONDON");
-
-		 Game game = new Game(mockedChoser);
-		 String word = "L_____";
-		 assertEquals(game.getWordToGuess(), word);
-	 }
-
 	@Test public void testGuessLetterRight() {
 		WordChoser mockedChoser = mock(WordChoser.class);
 		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("MAKERS");
@@ -41,8 +34,7 @@ public class GameTest {
 		when(mockedChoser.getRandomWordFromDictionary()).thenReturn("LONDON");
 
 		Game game = new Game(mockedChoser);
-		String word = "L_____";
-		assertEquals(game.getWordToGuess(), word);
+		assertEquals(game.getWordToGuess(), "L_____");
 	}
 
 	 @Test
