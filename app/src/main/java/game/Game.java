@@ -3,18 +3,15 @@ package game;
 import java.util.ArrayList;
 
 public class Game {
-	private ArrayList<Character> guessedLetters = new ArrayList<>();
+	final private ArrayList<Character> guessedLetters = new ArrayList<>();
 	private String word;
-	public int remainingAttempts = 10;
-	private Masker masker;
+	private int remainingAttempts = 10;
+	final private Masker masker;
 	private WordChoser wordChoser;
 	public Game(WordChoser wordChoser, Masker masker) {
 		this.word = wordChoser.getRandomWordFromDictionary();
 		this.masker = masker;
 	}
-
-
-
 	public Integer getRemainingAttempts() {
 		return this.remainingAttempts;
 	}
