@@ -6,7 +6,7 @@ public class Game {
 	final private ArrayList<Character> guessedLetters = new ArrayList<>();
 	private String word;
 	private int remainingAttempts = 10;
-	private String name;
+	public String name;
 	final private Masker masker;
 	private WordChoser wordChoser;
 
