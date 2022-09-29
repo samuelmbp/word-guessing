@@ -6,11 +6,14 @@ public class Game {
 	final private ArrayList<Character> guessedLetters = new ArrayList<>();
 	private String word;
 	private int remainingAttempts = 10;
+	private String name;
 	final private Masker masker;
 	private WordChoser wordChoser;
-	public Game(WordChoser wordChoser, Masker masker) {
+
+	public Game(WordChoser wordChoser, Masker masker, String name) {
 		this.word = wordChoser.getRandomWordFromDictionary();
 		this.masker = masker;
+		this.name = name;
 	}
 	public Integer getRemainingAttempts() {
 		return this.remainingAttempts;
@@ -34,9 +37,7 @@ public class Game {
 		if (this.remainingAttempts == 0) {
 			System.out.println("You've lost! Try again.");
 			return true;
-		} else {
-			return false;
-		}
+		} else return false;
 	}
 
 	public Boolean isGameWon() {

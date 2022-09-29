@@ -3,11 +3,7 @@ package game;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
-
-
-import org.checkerframework.checker.units.qual.A;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
 public class GameTest {
@@ -17,7 +13,7 @@ public class GameTest {
 
 		Masker mockedMasker = mock(Masker.class);
 
-		Game game = new Game(mockedChoser, mockedMasker);
+		Game game = new Game(mockedChoser, mockedMasker, "Samuel");
 		assertEquals(game.guessLetter('K'), true);
 	}
 
@@ -28,7 +24,7 @@ public class GameTest {
 
 		Masker mockedMasker = mock(Masker.class);
 
-		Game game = new Game(wordChoser, mockedMasker);
+		Game game = new Game(wordChoser, mockedMasker, "Samuel");
 		assertEquals(game.guessLetter('X'), false);
 	}
 
@@ -41,7 +37,7 @@ public class GameTest {
 		ArrayList<Character> guessedLetters = new ArrayList<>();
 		when(mockedMasker.getMaskedWord("MAKERS", guessedLetters)).thenReturn("M_____");
 
-		Game game = new Game(mockedChoser, mockedMasker);
+		Game game = new Game(mockedChoser, mockedMasker, "Samuel");
 		assertEquals(game.getWordToGuess(), "M_____");
 	}
 
@@ -54,7 +50,7 @@ public class GameTest {
 		 ArrayList<Character> guessedLetters = new ArrayList<>();
 		 when(mockedMasker.getMaskedWord("LONDON", guessedLetters)).thenReturn("LONDON");
 
-		 Game game = new Game(mockedChoser, mockedMasker);
+		 Game game = new Game(mockedChoser, mockedMasker, "Samuel");
 		 int remainingAttempts = 10;
 		 assertEquals("should return the number of attempts",
 		 Integer.valueOf(remainingAttempts),
@@ -70,7 +66,7 @@ public class GameTest {
 		ArrayList<Character> guessedLetters = new ArrayList<>();
 		when(mockedMasker.getMaskedWord("DEVELOPER", guessedLetters)).thenReturn("DE_E___E_");
 
-		Game game = new Game(wordChoser, mockedMasker);
+		Game game = new Game(wordChoser, mockedMasker, "Samuel");
 		assertEquals(game.getWordToGuess(), "DE_E___E_");
 	}
 	@Test
@@ -79,10 +75,10 @@ public class GameTest {
 		when(wordChoser.getRandomWordFromDictionary()).thenReturn("SEA");
 
 		Masker mockedMasker = mock(Masker.class);
-		ArrayList<Character> guessedLetters = new ArrayList<Character>();
+		ArrayList<Character> guessedLetters = new ArrayList<>();
 		when(mockedMasker.getMaskedWord("SEA", guessedLetters)).thenReturn("S__");
 
-		Game game = new Game(wordChoser, mockedMasker);
+		Game game = new Game(wordChoser, mockedMasker, "Samuel");
 		game.guessLetter('Y');
 		game.guessLetter('Y');
 		game.guessLetter('Y');
@@ -103,7 +99,7 @@ public class GameTest {
 		Masker mockedMasker = mock(Masker.class);
 
 
-		Game game = new Game(wordChoser, mockedMasker);
+		Game game = new Game(wordChoser, mockedMasker, "Samuel");
 		game.guessLetter('S');
 		game.guessLetter('E');
 		game.guessLetter('A');
@@ -117,7 +113,7 @@ public class GameTest {
 		Masker mockedMasker = mock(Masker.class);
 
 
-		Game game = new Game(wordChoser, mockedMasker);
+		Game game = new Game(wordChoser, mockedMasker,"Samuel");
 		game.guessLetter('A');
 		game.guessLetter('B');
 		game.guessLetter('A');
