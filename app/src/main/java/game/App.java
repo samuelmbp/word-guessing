@@ -12,6 +12,7 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the hangman game!");
+        System.out.println();
 
         System.out.println("Enter name for player one: ");
         String playerOneName = scanner.nextLine();
@@ -30,6 +31,7 @@ public class App {
         Game playerOne = players.get(randomPlayer);
         Game playerTwo = players.get(1 - randomPlayer);
 
+        System.out.println();
         System.out.println("Welcome! Today the word to guess is: ");
         System.out.println(playerOne.name + ": " + playerOne.getWordToGuess());
         System.out.println(playerTwo.name + ": " + playerTwo.getWordToGuess());
@@ -37,8 +39,8 @@ public class App {
        do {
            int counter = 1; // Makes sure the random word is not the same for both players
 
-           System.out.println(playerOne.name + ": Guess a letter " + "(" + playerOne.getRemainingAttempts()
-                   + " attempts remaining" + ")");
+           System.out.println(playerOne.name + ": Enter one letter to guess " + "(" + playerOne.getRemainingAttempts()
+                   + " attempts remaining" + "):");
            Character playerOneInput = scanner.nextLine().charAt(0);
            String playerOneResult = playerOne.guessLetter(playerOneInput);
 
@@ -63,8 +65,8 @@ public class App {
                }
            }
 
-           System.out.println(playerTwo.name + ": Guess a letter! " + "(" + playerTwo.getRemainingAttempts()
-                   + " attempts remaining)");
+           System.out.println(playerTwo.name + ": Enter one letter to guess " + "(" + playerTwo.getRemainingAttempts()
+                   + " attempts remaining):");
 
            Character playerTwoInput = scanner.nextLine().charAt(0);
            String playerTwoResult = playerTwo.guessLetter(playerTwoInput);
