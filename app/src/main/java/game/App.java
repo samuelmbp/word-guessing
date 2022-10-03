@@ -35,6 +35,7 @@ public class App {
         System.out.println("Welcome! Today the word to guess is: ");
         System.out.println(playerOne.name + ": " + playerOne.getWordToGuess());
         System.out.println(playerTwo.name + ": " + playerTwo.getWordToGuess());
+        System.out.println();
 
        do {
            int counter = 1; // Makes sure the random word is not the same for both players

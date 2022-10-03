@@ -21,6 +21,7 @@ Lucy
 Welcome! Today the word to guess is: 
 Lucy: L_____
 Jake: D________
+
 Lucy: Enter one letter to guess (10 attempts remaining):
 O
 Right!
@@ -50,3 +51,7 @@ D
 Congratulations! Lucy won!
 LONDON
 ```
+
+## Technologies Used
+- Java
+- JUnit 
