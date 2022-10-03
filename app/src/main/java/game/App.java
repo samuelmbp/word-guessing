@@ -37,14 +37,60 @@ public class App {
        do {
            int counter = 1;
 
-//           if (counter % 2 != 0) {
-//               System.out.println(playerOne.name + ": Guess a letter " + "(" + playerOne.getRemainingAttempts()
-//                       + "attempts remaining" + ")");
-//               Character playerOneInput = scanner.nextLine().charAt(0);
-//               String playerOneResult = playerOne.guessLetter(playerOneInput);
-//           }
+           System.out.println(playerOne.name + ": Guess a letter " + "(" + playerOne.getRemainingAttempts()
+                   + " attempts remaining" + ")");
+           Character playerOneInput = scanner.nextLine().charAt(0);
+           String playerOneResult = playerOne.guessLetter(playerOneInput);
 
-        } while ((playerOne.getWordToGuess().contains("_") && playerOne.getRemainingAttempts() > 0 )
+           if (playerOneResult == "right") {
+               if (playerOne.isGameWon()) {
+                   System.out.println("Congratulations! " + playerOne.name + " won!");
+                   System.out.println(playerOne.getWordToGuess());
+                   break;
+               } else {
+                   System.out.println("Right!");
+                   System.out.println(playerOne.getWordToGuess());
+                   counter++;
+               }
+           } else {
+               if (playerOne.isGameLost()) {
+                   System.out.println("Wrong!" + playerTwo.name + " won!");
+                   break;
+               } else {
+                   System.out.println("Wrong");
+                   System.out.println(playerOne.getWordToGuess());
+                   counter++;
+               }
+           }
+
+           System.out.println(playerTwo.name + ": Guess a letter! " + "(" + playerTwo.getRemainingAttempts()
+                   + " attempts remaining)");
+
+           Character playerTwoInput = scanner.nextLine().charAt(0);
+           String playerTwoResult = playerTwo.guessLetter(playerTwoInput);
+
+           if (playerTwoResult == "right") {
+               if (playerTwo.isGameWon()) {
+                   System.out.println("Congratulations! " + playerTwo.name + " won!");
+                   System.out.println(playerTwo.getWordToGuess());
+                   break;
+               } else {
+                   System.out.println("Right!");
+                   System.out.println(playerTwo.getWordToGuess());
+                   counter++;
+               }
+           } else {
+               if (playerTwo.isGameLost()) {
+                   System.out.println("Wrong! " + playerTwo.name + " won!");
+                   break;
+               } else {
+                   System.out.println("Wrong!");
+                   System.out.println(playerTwo.getWordToGuess());
+                   counter++;
+               }
+           }
+
+       } while ((playerOne.getWordToGuess().contains("_") && playerOne.getRemainingAttempts() > 0 )
                || (playerTwo.getWordToGuess().contains("_") && playerTwo.getRemainingAttempts() > 0));
     }
 }
