@@ -19,13 +19,13 @@ public class Game {
 		return this.remainingAttempts;
 	}
 
-	public Boolean guessLetter(Character letter) {
+	public String guessLetter(Character letter) {
 		if (this.word.indexOf(letter) != -1) {
 			guessedLetters.add(letter);
-			return true;
+			return "right";
 		} else {
 			this.remainingAttempts--;
-			return false;
+			return "wrong";
 		}
 	};
 

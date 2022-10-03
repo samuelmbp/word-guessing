@@ -14,7 +14,7 @@ public class GameTest {
 		Masker mockedMasker = mock(Masker.class);
 
 		Game game = new Game(mockedChoser, mockedMasker, "Samuel");
-		assertEquals(game.guessLetter('K'), true);
+		assertEquals(game.guessLetter('K'), "right");
 	}
 
 	@Test
@@ -25,7 +25,7 @@ public class GameTest {
 		Masker mockedMasker = mock(Masker.class);
 
 		Game game = new Game(wordChoser, mockedMasker, "Samuel");
-		assertEquals(game.guessLetter('X'), false);
+		assertEquals(game.guessLetter('X'), "wrong");
 	}
 
 	@Test

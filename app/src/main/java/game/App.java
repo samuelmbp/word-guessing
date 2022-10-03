@@ -34,24 +34,18 @@ public class App {
         System.out.println(playerOne.name + ": " + playerOne.getWordToGuess());
         System.out.println(playerTwo.name + ": " + playerTwo.getWordToGuess());
 
-//        do {
-//            System.out.println(playerOneName + game.getWordToGuess());
-//            System.out.println("Enter one letter to guess (" + game.getRemainingAttempts() + " attempts remaining): ");
-//
-//            Scanner scanner = new Scanner(System.in);
-//            Character letter = scanner.nextLine().charAt(0);
-//
-//            if (game.guessLetter(letter)) {
-//                System.out.println("Right!");
-//
-//                if (game.isGameWon()) {
-//                    System.out.println("The word is: " + game.getWordToGuess());
-//                    System.out.println("Congratulations! You won the game.");
-//                    break;
-//                }
-//            } else {
-//                System.out.println("Wrong!");
-//            }
-//        } while(!game.isGameLost());
+       do {
+           int counter = 1;
+
+//           if (counter % 2 != 0) {
+//               System.out.println(playerOne.name + ": Guess a letter " + "(" + playerOne.getRemainingAttempts()
+//                       + "attempts remaining" + ")");
+//               Character playerOneInput = scanner.nextLine().charAt(0);
+//               String playerOneResult = playerOne.guessLetter(playerOneInput);
+//           }
+
+        } while ((playerOne.getWordToGuess().contains("_") && playerOne.getRemainingAttempts() > 0 )
+               || (playerTwo.getWordToGuess().contains("_") && playerTwo.getRemainingAttempts() > 0));
     }
 }
+
