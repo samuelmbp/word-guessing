@@ -6,12 +6,12 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GameRunner {
-    private int counter = 1; // Makes sure the random word is not the same for both players
+    private int counter = 1;
+    private final Print print = new Print();
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the hangman game!");
-        System.out.println();
+        print.welcomeMessage();
 
         System.out.println("Enter name for player one: ");
         String playerOneName = scanner.nextLine();
@@ -30,25 +30,22 @@ public class GameRunner {
         Game playerOne = players.get(randomPlayer);
         Game playerTwo = players.get(1 - randomPlayer);
 
-        System.out.println();
-        System.out.println("Welcome! Today the word to guess is: ");
+        print.wordToGuessMessage();
         System.out.println(playerOne.name + ": " + playerOne.getWordToGuess());
         System.out.println(playerTwo.name + ": " + playerTwo.getWordToGuess());
         System.out.println();
 
         do {
-            System.out.println(playerOne.name + ": Enter one letter to guess " + "(" + playerOne.getRemainingAttempts()
-                    + " attempts remaining" + "):");
+            print.askPlayerForLetterInput(playerOne.name, playerOne.getRemainingAttempts());
             Character playerOneInput = scanner.nextLine().charAt(0);
             String playerOneResult = playerOne.guessLetter(playerOneInput);
 
             if (playerOneResult == "right") {
                 if (playerOne.isGameWon()) {
-                    System.out.println("Congratulations! " + playerOne.name + " won!");
-                    System.out.println(playerOne.getWordToGuess());
+                    print.congratulateWinner(playerOne.name, playerOne.getWordToGuess());
                     break;
                 } else {
-                    System.out.println("Right!");
+                    print.correctGuess();
                     System.out.println(playerOne.getWordToGuess());
                     counter++;
                 }
@@ -57,25 +54,23 @@ public class GameRunner {
                     System.out.println("Wrong!" + playerTwo.name + " won!");
                     break;
                 } else {
-                    System.out.println("Wrong");
+                    print.wrongGuess();
                     System.out.println(playerOne.getWordToGuess());
                     counter++;
                 }
             }
 
-            System.out.println(playerTwo.name + ": Enter one letter to guess " + "(" + playerTwo.getRemainingAttempts()
-                    + " attempts remaining):");
+            print.askPlayerForLetterInput(playerTwo.name, playerTwo.getRemainingAttempts());
 
             Character playerTwoInput = scanner.nextLine().charAt(0);
             String playerTwoResult = playerTwo.guessLetter(playerTwoInput);
 
             if (playerTwoResult == "right") {
                 if (playerTwo.isGameWon()) {
-                    System.out.println("Congratulations! " + playerTwo.name + " won!");
-                    System.out.println(playerTwo.getWordToGuess());
+                    print.congratulateWinner(playerTwo.name, playerTwo.getWordToGuess());
                     break;
                 } else {
-                    System.out.println("Right!");
+                    print.correctGuess();
                     System.out.println(playerTwo.getWordToGuess());
                     counter++;
                 }
@@ -84,7 +79,7 @@ public class GameRunner {
                     System.out.println("Wrong! " + playerTwo.name + " won!");
                     break;
                 } else {
-                    System.out.println("Wrong!");
+                    print.wrongGuess();
                     System.out.println(playerTwo.getWordToGuess());
                     counter++;
                 }
